@@ -27,6 +27,5 @@ function loadImage(key, src){
 function render(){
     
     scene.tileMap.render(scene.context, 0);
-    // dessiner autre chose si vous voulez!!
     scene.tileMap.render(scene.context, 1);
 }
