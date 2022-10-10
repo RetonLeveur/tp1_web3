@@ -13,11 +13,11 @@ function createMenu() {
     "<form>" +
     '<div class="form-group bg-dark">' +
     '<label for="recipient-name" class="col-form-label">Joueur 1:</label>' +
-    '<input type="text" class="form-control" id="recipient-name"/>' +
+    '<input type="text" class="form-control" id="playerOneName"/>' +
     "</div>" +
     '<div class="form-group">' +
     '<label for="recipient-name" class="col-form-label">Joueur 2:</label>' +
-    '<input type="text" class="form-control" id="recipient-name"/>' +
+    '<input type="text" class="form-control" id="playerTwoName"/>' +
     "</div>" +
     "</form>" +
     "</div>" +
@@ -28,3 +28,15 @@ function createMenu() {
     "</div>";
   return menuCode;
 }
+
+export function getnNameOne(){
+    const nameOne = $('#playerOneName').val();
+    return nameOne;
+}
+
+export function getnNameTwo(){
+    const nameTwo = $('#playerTwoName').val();
+    return nameTwo;
+}
+ 
+

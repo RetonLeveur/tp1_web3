@@ -1,3 +1,4 @@
+
 export const PLAYER_ONE={
     src:'../assets/character.png',
     tileWidth:96,
@@ -36,10 +37,13 @@ export const PLAYER_ONE={
         right:'ArrowRight',
         up:'ArrowUp',
         down:'ArrowDown',
-        shoot:' '
+       
     },
 
     speed:5,
+    timer:60,
+    isTag:false,
+    name:'',
 
     initialPosition:{
         x:250,
@@ -87,8 +91,10 @@ export const PLAYER_TWO={
         down:'S',
        
     },
-
+    name:'',
     speed:5,
+    timer:60,
+    isTag:false,
 
     initialPosition:{
         x:350,

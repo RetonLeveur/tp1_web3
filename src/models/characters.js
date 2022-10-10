@@ -8,6 +8,8 @@ export default class characters {
         this.img.src = sprite.src;
         this.position = sprite.initialPosition;
         this.sequence = sprite.idleSequence;
+        this.name = sprite.name;
+        this.timer = sprite.timer;
         document.addEventListener("keydown", (event) => {
           this.keysdown[event.key] = true;
         });
@@ -56,6 +58,11 @@ export default class characters {
           this.currentFrame >= this.sequence.length ? 0 : this.currentFrame;
         return this.sequence[frame].y * this.sprite.tileHeight;
       }
+
+      getTimer(){
+        return this.timer;
+      }
+      
     
       render(ctx) {
         
