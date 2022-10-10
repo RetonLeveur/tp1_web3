@@ -62,7 +62,8 @@ export default class characters {
       getTimer(){
         return this.timer;
       }
-      
+   
+     
     
       render(ctx) {
         

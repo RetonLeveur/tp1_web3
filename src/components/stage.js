@@ -29,3 +29,5 @@ function render(){
     scene.tileMap.render(scene.context, 0);
     scene.tileMap.render(scene.context, 1);
 }
+
+

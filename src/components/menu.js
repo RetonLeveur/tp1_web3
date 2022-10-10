@@ -13,11 +13,11 @@ function createMenu() {
     "<form>" +
     '<div class="form-group bg-dark">' +
     '<label for="recipient-name" class="col-form-label">Joueur 1:</label>' +
-    '<input type="text" class="form-control" id="playerOneName"/>' +
+    '<input type="text" class="form-control" id="playerOneName" required>' +
     "</div>" +
     '<div class="form-group">' +
     '<label for="recipient-name" class="col-form-label">Joueur 2:</label>' +
-    '<input type="text" class="form-control" id="playerTwoName"/>' +
+    '<input type="text" class="form-control" id="playerTwoName" required>' +
     "</div>" +
     "</form>" +
     "</div>" +
