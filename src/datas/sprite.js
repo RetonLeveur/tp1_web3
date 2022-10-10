@@ -81,11 +81,11 @@ export const PLAYER_TWO={
     ],
 
     commands:{
-        left: 'ArrowLeft',
-        right:'ArrowRight',
-        up:'ArrowUp',
-        down:'ArrowDown',
-        shoot:' '
+        left: 'A',
+        right:'D',
+        up:'W',
+        down:'S',
+       
     },
 
     speed:5,
