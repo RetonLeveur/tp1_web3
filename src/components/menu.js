@@ -1,7 +1,7 @@
 export function menu() {
 return createMenu();
 }
-
+// code pour le modal
 function createMenu() {
   const menuCode =
     '<div class="modal-dialog" id="menu" role="document">' +
@@ -28,12 +28,12 @@ function createMenu() {
     "</div>";
   return menuCode;
 }
-
+// retourne le nom du joueur 1
 export function getnNameOne(){
     const nameOne = $('#playerOneName').val();
     return nameOne;
 }
-
+// retourne le nom du joueur 2
 export function getnNameTwo(){
     const nameTwo = $('#playerTwoName').val();
     return nameTwo;

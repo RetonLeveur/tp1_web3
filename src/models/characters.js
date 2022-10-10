@@ -1,9 +1,8 @@
 export default class characters {
     keysdown = {};
-
+    // constructeur pour un nouveau joueur
     constructor(sprite) {
         this.sprite = sprite;
-    
         this.img = new Image();
         this.img.src = sprite.src;
         this.position = sprite.initialPosition;
@@ -19,7 +18,7 @@ export default class characters {
     
         setInterval(() => this.changeFrame(), 100);
       }
-
+     // Séquence de mouvement du joueur 
     move() {
         this.sequence = this.sprite.idleSequence;
         if (this.keysdown[this.sprite.commands.left]) {

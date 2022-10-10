@@ -1,4 +1,4 @@
-
+// sprite du joueur 1
 export const PLAYER_ONE={
     src:'../assets/character.png',
     tileWidth:96,
@@ -50,7 +50,7 @@ export const PLAYER_ONE={
         y:250
     }
 }
-
+// sprite du joueur 1
 export const PLAYER_TWO={
     src:'../assets/character.png',
     tileWidth:96,
