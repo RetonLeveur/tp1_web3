@@ -66,8 +66,9 @@ function loop(ctx){
     ctx.clearRect(0,0,stage.width,stage.height);
     stage.character1.move();
     stage.character1.render(ctx);
+    stage.character2.render(ctx);
+    stage.character2.move();
     ctx.restore();
-    //stage.character2.render(ctx);
     setTimeout(() => {window.requestAnimationFrame(() => loop(ctx));},33);
 }
 

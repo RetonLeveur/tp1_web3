@@ -49,12 +49,11 @@ export const PLAYER_ONE={
         y:10
     }
 }
-// sprite du joueur 1
+// sprite du joueur 2
 export const PLAYER_TWO={
     src:'../../assets/characters.png',
-    tileWidth:96,
-    tileHeight:96,
-
+    tileWidth:51.3,
+    tileHeight:71,
     idleSequence:[
         {x:10,y:2}
     ],
@@ -84,10 +83,10 @@ export const PLAYER_TWO={
     ],
 
     commands:{
-        left: 'A',
-        right:'D',
-        up:'W',
-        down:'S',
+        left: 'a',
+        right:'d',
+        up:'w',
+        down:'s',
        
     },
     name:'',
@@ -95,7 +94,7 @@ export const PLAYER_TWO={
     isTag:false,
 
     initialPosition:{
-        x:350,
-        y:350
+        x:500,
+        y:500
     }
 }
