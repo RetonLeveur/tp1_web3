@@ -1,14 +1,14 @@
 export default class characters {
+    currentFrame = 0;
     keysdown = {};
-    // constructeur pour un nouveau joueur
     constructor(sprite) {
         this.sprite = sprite;
         this.img = new Image();
         this.img.src = sprite.src;
-        this.position = sprite.initialPosition;
-        this.sequence = sprite.idleSequence;
+        this.position = this.sprite.initialPosition;
+        this.sequence = this.sprite.idleSequence;
         this.name = sprite.name;
-        this.timer = sprite.timer;
+        this.timer = 60;
         document.addEventListener("keydown", (event) => {
           this.keysdown[event.key] = true;
         });
@@ -47,8 +47,7 @@ export default class characters {
       }
     
       getSourceX() {
-        const frame =
-          this.currentFrame >= this.sequence.length ? 0 : this.currentFrame;
+        const frame = this.currentFrame >= this.sequence.length ? 0 : this.currentFrame;
         return this.sequence[frame].x * this.sprite.tileWidth;
       }
     
@@ -65,7 +64,8 @@ export default class characters {
      
     
       render(ctx) {
-        
+        ctx.save();
+
         ctx.drawImage(
           this.img,
           this.getSourceX(),
@@ -78,6 +78,7 @@ export default class characters {
           this.sprite.tileHeight
         );
 
+        ctx.restore();
       }
 }
 

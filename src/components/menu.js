@@ -30,13 +30,11 @@ function createMenu() {
 }
 // retourne le nom du joueur 1
 export function getnNameOne(){
-    const nameOne = $('#playerOneName').val();
-    return nameOne;
+    return $('#playerOneName').val();
 }
 // retourne le nom du joueur 2
 export function getnNameTwo(){
-    const nameTwo = $('#playerTwoName').val();
-    return nameTwo;
+    return $('#playerTwoName').val();
 }
  
 

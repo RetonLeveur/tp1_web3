@@ -1,11 +1,11 @@
 // sprite du joueur 1
 export const PLAYER_ONE={
-    src:'../assets/character.png',
-    tileWidth:96,
-    tileHeight:96,
+    src:'../../assets/characters.png',
+    tileWidth:51,
+    tileHeight:71,
 
     idleSequence:[
-        {x:2,y:2}
+        {x:1,y:0},
     ],
 
     walkSequenceRight:[
@@ -41,18 +41,17 @@ export const PLAYER_ONE={
     },
 
     speed:5,
-    timer:60,
     isTag:false,
     name:'',
 
     initialPosition:{
-        x:250,
-        y:250
+        x:10,
+        y:10
     }
 }
 // sprite du joueur 1
 export const PLAYER_TWO={
-    src:'../assets/character.png',
+    src:'../../assets/characters.png',
     tileWidth:96,
     tileHeight:96,
 
@@ -93,7 +92,6 @@ export const PLAYER_TWO={
     },
     name:'',
     speed:5,
-    timer:60,
     isTag:false,
 
     initialPosition:{

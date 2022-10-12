@@ -9,7 +9,5 @@ $('body').append(gameBoard);
 $('#startGame').click(function (){
     gameBoard.append(scoreboard())
     gameBoard.append(stage());
-    $('#menu').hide();
-
-   
+    $('#menu').hide();  
 })
