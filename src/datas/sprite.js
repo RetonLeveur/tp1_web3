@@ -55,7 +55,7 @@ export const PLAYER_TWO={
     tileWidth:51.3,
     tileHeight:71,
     idleSequence:[
-        {x:10,y:2}
+        {x:10,y:0}
     ],
 
     walkSequenceRight:[

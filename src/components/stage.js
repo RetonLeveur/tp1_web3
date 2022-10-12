@@ -14,7 +14,6 @@ export function stage(){
     const canvas2 = $('<canvas></canvas>');
     canvas2.id = 'canvas';
 
-
     loadImage('tileAtlas', '../assets/tiles.png');
     scene.tileMap = new background(asset.tileAtlas, tileSize);
 
