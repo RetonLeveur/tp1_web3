@@ -65,8 +65,10 @@ function loop(ctx){
     ctx.clearRect(0,0,stage.width,stage.height);
     stage.character1.move();
     stage.character1.render(ctx);
-    stage.character2.render(ctx);
+    stage.character1.collisionEnter(stage.character2);
     stage.character2.move();
+    stage.character2.render(ctx);
+
     ctx.restore();
     setTimeout(() => {window.requestAnimationFrame(() => loop(ctx));},33);
 }
