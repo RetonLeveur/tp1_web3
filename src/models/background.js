@@ -41,6 +41,9 @@ export default class background{
       getTile(layer, col, row){
         return this.tiles[layer][row * this.cols + col];
       }
+      getBorder(){
+        return [0,this.tileSize*this.rows,this.tileSize-25,this.tileSize*(this.cols-1)]
+      }
 
       render(ctx, layer){
         for(let c = 0; c < this.cols; c++){

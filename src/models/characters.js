@@ -10,6 +10,7 @@ export default class characters {
         this.sequence = this.sprite.idleSequence;
         this.name = sprite.name;
         this.timer = 60;
+        this.hitboxMaincharacter = [];
         document.addEventListener("keydown", (event) => {
           this.keysdown[event.key] = true;
         });
@@ -62,36 +63,58 @@ export default class characters {
         return this.timer;
       }
    
-     
-      collisionEnter(otherCaracter){
-        let s = this.hitBoxCalc(this);
-        let v = this.hitBoxCalc(otherCaracter);
-
-          if(s[1] <= v[0] && s[3] <= v[3] && s[3] >=v[2] && s[1] -v[0]  >= -5  
-            || s[1] <= v[0] && s[2] >= v[2] && s[2] <= v[3] && s[1] -v[0]  >= -5 ){
-            this.hit.right = true
-            this.hit.left = false;  
-            console.log("right");
+      collisionEnterBorder(border){
+        if(this.hitboxMaincharacter[0] <= border[0]){
+            this.hit.left = true;
           }
-          else if(s[0] <= v[1] && s[3] <= v[3] && s[3] >=v[2] && v[1] - s[0] <= 10 ||s[0] <= v[1] && s[2] >= v[2] && s[2] <= v[3] && v[1] - s[0] <= 10 ){
-            this.hit.left = true;   
-            console.log("left");
-          }  
-          else if(s[3] <= v[2] && s[0] <= v[0] && s[1] >= v[0] && v[2] - s[3] <= 10 || s[3] <= v[2] && s[0] <= v[1] && s[1] >= v[1] && v[2] - s[3] <= 10 )
+          else if(this.hitboxMaincharacter[1] >= border[1]){
+            this.hit.right = true;
+          }
+
+          if(this.hitboxMaincharacter[2] <= border[2])
+          {
+            this.hit.top = true;
+          }
+          else if(this.hitboxMaincharacter[3] >= border[3])
           {
             this.hit.bottom = true;
-            console.log("top");
           }
-          else if(s[2] >= v[3] && s[0] <= v[1] && s[1] >= v[0] && s[2] - v[3]   <= 5|| s[2] >= v[3] && s[0] >= v[1] && s[0] <= v[1] && s[2] - v[3]  <= 5){
+        
+      }
+      collisionEnterCharacter(otherCaracter){
+        this.hitboxMaincharacter = this.hitBoxCalc(this);
+        let hitboxOthercharacter = this.hitBoxCalc(otherCaracter);
+
+          if(this.hitboxMaincharacter[1] <= hitboxOthercharacter[0] && this.hitboxMaincharacter[3] <= hitboxOthercharacter[3] &&
+            this.hitboxMaincharacter[3] >=hitboxOthercharacter[2] && this.hitboxMaincharacter[1] -hitboxOthercharacter[0]  >= -5  
+            || this.hitboxMaincharacter[1] <= hitboxOthercharacter[0] && this.hitboxMaincharacter[2] >= hitboxOthercharacter[2] &&
+            this.hitboxMaincharacter[2] <= hitboxOthercharacter[3] && this.hitboxMaincharacter[1] -hitboxOthercharacter[0]  >= -5 ){
+            this.hit.right = true;
+          }
+          else if(this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] && this.hitboxMaincharacter[3] <= hitboxOthercharacter[3] &&
+            this.hitboxMaincharacter[3] >=hitboxOthercharacter[2] && hitboxOthercharacter[1] - this.hitboxMaincharacter[0] <= 10 ||
+            this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] && this.hitboxMaincharacter[2] >= hitboxOthercharacter[2] &&
+            this.hitboxMaincharacter[2] <= hitboxOthercharacter[3] && hitboxOthercharacter[1] - this.hitboxMaincharacter[0] <= 10 ){
+            this.hit.left = true;   
+          }  
+          else if(this.hitboxMaincharacter[3] <= hitboxOthercharacter[2] && this.hitboxMaincharacter[0] <= hitboxOthercharacter[0] &&
+            this.hitboxMaincharacter[1] >= hitboxOthercharacter[0] && hitboxOthercharacter[2] - this.hitboxMaincharacter[3] <= 10 ||
+            this.hitboxMaincharacter[3] <= hitboxOthercharacter[2] && this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] &&
+            this.hitboxMaincharacter[1] >= hitboxOthercharacter[1] && hitboxOthercharacter[2] - this.hitboxMaincharacter[3] <= 10 )
+          {
+            this.hit.bottom = true;
+          }
+          else if(this.hitboxMaincharacter[2] >= hitboxOthercharacter[3] && this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] &&
+            this.hitboxMaincharacter[1] >= hitboxOthercharacter[0] && this.hitboxMaincharacter[2] - hitboxOthercharacter[3]   <= 5||
+            this.hitboxMaincharacter[2] >= hitboxOthercharacter[3] && this.hitboxMaincharacter[0] >= hitboxOthercharacter[1] &&
+             this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] && this.hitboxMaincharacter[2] - hitboxOthercharacter[3]  <= 5){
             this.hit.top = true;
-            console.log("in bot");
           }
           else {
             this.hit.right = false;
             this.hit.left = false;
             this.hit.top = false;
             this.hit.bottom = false;
-            console.log("?");
           }
 
 
