@@ -64,12 +64,13 @@ function loop(ctx){
     ctx.save();
     ctx.clearRect(0,0,stage.width,stage.height);
 
+    /**L'ordre est important colisionEnterCharacter doit être avant les autres collisions */
     stage.character1.move();
     stage.character1.render(ctx);
     stage.character1.collisionEnterCharacter(stage.character2);
     stage.character1.collisionEnterBorder(scene.tileMap.getBorder());
-
-
+    stage.character1.collisionEnterObjetsBloquant(scene.tileMap.zoneBloquant);
+    
     
     stage.character2.move();
     stage.character2.render(ctx);

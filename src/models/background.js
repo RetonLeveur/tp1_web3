@@ -1,8 +1,8 @@
 export default class background{
     cols = 10;
     rows = 10;
-
-    tiles = [[
+    
+        tiles = [[
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -14,28 +14,24 @@ export default class background{
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-
-       
       ],
       [
         5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 4, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 3, 1, 1, 1, 1, 1, 4, 1,
-        1, 1, 1, 1, 4, 1, 1, 1, 3, 1,
-        1, 1, 1, 1, 3, 1, 4, 1, 1, 1,
-        1, 1, 1, 1, 1, 1, 3, 1, 4, 1,
-        1, 4, 1, 1, 1, 1, 1, 1, 3, 1,
-        1, 3, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 3, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-  
-
-       
       ]];
 
       constructor(tileAtlas, tileSize){
         this.tileAtlas = tileAtlas;
         this.tileSize = tileSize;
+        this.zoneBloquant = this.getHitBoxArbre();
       }
 
       getTile(layer, col, row){
@@ -43,6 +39,18 @@ export default class background{
       }
       getBorder(){
         return [0,this.tileSize*this.rows,this.tileSize-25,this.tileSize*(this.cols-1)]
+      }
+      getHitBoxArbre(){
+        let array = [];
+        let tour = 0;
+        this.tiles[1].forEach(tile => {          
+          if(tile == 4){
+             array.push([tour % 10 * this.tileSize,tour % 10 *this.tileSize + this.tileSize, (tour- tour%10) /10 * this.tileSize,(tour- tour%10) /10 * this.tileSize + this.tileSize]);
+
+          }
+          tour++;
+        });
+        return array;
       }
 
       render(ctx, layer){
