@@ -12,12 +12,18 @@ let leaderBoard=[
 ]
 
 export function createLeaderBoard(){
-    $('<div></div>').addClass('leaderBoard').attr('id','leaderBoard');
+   const board=  $('<div></div>').addClass('leaderBoard').attr('id','leaderBoard');
+   board.append($('<h2>Top 10 Players</h2>').addClass('leaderTitle'));
+   let position =1
+   leaderBoard.forEach(entry => {
+  
+   board.append($('<p></p>').addClass('leaderEntry').text(position+':'+entry.name +'    '+entry.score));
+   position+=1; 
+   });
+
+   return board;
 }
 
-export function loadLeaderBoard(){
- //TODO Charger les entrée actuel dans le leaderboard
-}
 export function addToLeaderBoard(){
     //TODO Ajouter un nouveau record dans le leaderboard
 }
