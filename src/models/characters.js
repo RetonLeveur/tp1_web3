@@ -2,14 +2,16 @@ export default class characters {
     hit ={right:false,left:false,top:false,bottom:false}
     currentFrame = 0;
     keysdown = {};
-    constructor(sprite) {
+    constructor(sprite,name) {
         this.sprite = sprite;
         this.img = new Image();
+        this.speed = 5; 
+        this.isTag =false;
+        this.name = name;
         this.img.src = sprite.src;
         this.position = this.sprite.initialPosition;
         this.sequence = this.sprite.idleSequence;
-        this.name = sprite.name;
-        this.timer = 60;
+        this.temps = 60;
         this.hitboxMaincharacter = [];
         document.addEventListener("keydown", (event) => {
           this.keysdown[event.key] = true;
@@ -157,7 +159,7 @@ export default class characters {
           }
       }
 
-      
+
       activerTagMode(){
         this.hit.right = false;
         this.hit.left = false;
@@ -167,11 +169,11 @@ export default class characters {
       becomeTag(){
         if(1 === 1){
           /**this.tag */
-          setInterval(this.activerTagMode,2000);
+          /**setInterval(this.activerTagMode,2000);
           this.hit.right = true;
           this.hit.left = true;
           this.hit.top = true;
-          this.hit.bottom = true;
+          this.hit.bottom = true;**/
         }
       }
       hitBoxCalc(character){
@@ -196,6 +198,9 @@ export default class characters {
         ctx.restore();
       }
 }
+
+ 
+
 
 
 

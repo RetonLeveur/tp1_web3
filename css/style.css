@@ -7,6 +7,7 @@ canvas{
     transform: translate(-50%, -50%);
     top: 30%;
     left: 50%;
+    margin-top: 10%;
 }
 
 .leaderBoard{

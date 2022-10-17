@@ -1,13 +1,18 @@
 import background  from "../models/background.js";
 import {PLAYER_TWO,PLAYER_ONE} from "../datas/sprite.js";
+import { getnNameOne, getnNameTwo } from "./menu.js";
 import Character from "../models/characters.js"
+import scoreBoard from "./scoreboard.js";
 const asset = {};
 const scene = {};
 const tileSize = 64;
+const wrapper = $('<div></div>');
 export function stage(){
+    /** scoreboard ici */
 
+    
     /**quand je le mets en jquery le canvas prend pas la bonne dimension */
-    const wrapper = $('<div></div>');
+   
     const canvas = $('<canvas></canvas>');
     canvas.id = 'canvas';
 
@@ -53,14 +58,16 @@ function setStageSize(){
 }
 
 function setGameLayer(){
-    stage.character1= new Character(PLAYER_ONE);
-    stage.character2= new Character(PLAYER_TWO);
+    stage.character1= new Character(PLAYER_ONE,getnNameOne());
+    stage.character2= new Character(PLAYER_TWO,getnNameTwo());
     loop(scene.context2);
 }
 
 
 
 function loop(ctx){
+
+    gererScoreBoard();
     ctx.save();
     ctx.clearRect(0,0,stage.width,stage.height);
 
@@ -79,5 +86,11 @@ function loop(ctx){
 
     ctx.restore();
     setTimeout(() => {window.requestAnimationFrame(() => loop(ctx));},33);
+}
+
+
+function gererScoreBoard(){
+    $(".scoreBoard").remove();
+    wrapper.append(new scoreBoard(stage.character1,stage.character2).afficher().addClass('scoreBoard'))
 }
 

@@ -1,10 +1,19 @@
 import { getnNameOne, getnNameTwo } from "./menu.js";
 // affiche le nom des joueur une fois la partie en marche
-export function scoreboard(){
-    const board = $('<div></div>').attr('id','scoreBoard').addClass('text-center');
-    const playerOne= $('<p></p>').text(getnNameOne() +  ":" +"60 sec");
-    const playerTwo= $('<p></p>').text(getnNameTwo() +  ":" +"60 sec");
-    board.append(playerOne).append(playerTwo);
+export default class scoreBoard{
+    constructor(joueur1,joueur2){
+        this.joueur1 = joueur1;
+        this.joueur2 = joueur2;
+    }
 
-    return board;
-};
+    afficher(){
+        const board = $('<div></div>').attr('id','scoreBoard').addClass('text-center');
+        const playerOne= $('<p></p>').text(this.joueur1.name +  ":" + this.joueur1.temps);
+        const playerTwo= $('<p></p>').text(this.joueur2.name +  ":" + this.joueur2.temps);
+        board.append(playerOne).append(playerTwo);
+    
+        return board;
+    };
+}
+
+
