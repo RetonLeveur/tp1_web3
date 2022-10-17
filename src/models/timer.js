@@ -3,13 +3,14 @@ export default class timer{
         this.duree = temps
     }
 
-    start(){
-        
-        this.temps = setInterval(() => this.reduireTemps(),1000);
+    start(){  
+        this.timer = setInterval(() => this.reduireTemps(),1000);
     }
 
+    stop(){
+        clearInterval(this.timer);
+    }
     reduireTemps(){
-        console.log("here");
         this.duree--;
     }
 }

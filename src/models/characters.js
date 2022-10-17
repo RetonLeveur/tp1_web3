@@ -4,17 +4,18 @@ export default class characters {
     hit ={right:false,left:false,top:false,bottom:false}
     currentFrame = 0;
     keysdown = {};
-    constructor(sprite,name) {
+    constructor(sprite,name,isTag) {
         this.sprite = sprite;
         this.img = new Image();
         this.speed = 5; 
-        this.isTag =false;
+        this.isTag =isTag;
         this.name = name;
         this.img.src = sprite.src;
         this.position = this.sprite.initialPosition;
         this.sequence = this.sprite.idleSequence;
         this.timer = new timer(60);
         this.hitboxMaincharacter = [];
+        this.immobiliser = false;
         document.addEventListener("keydown", (event) => {
           this.keysdown[event.key] = true;
         });
@@ -22,7 +23,9 @@ export default class characters {
           delete this.keysdown[event.key];
         });
         
-        this.timer.start();
+        if(this.isTag){
+          this.timer.start();
+        }
         setInterval(() => this.changeFrame(), 100);
       }
      // Séquence de mouvement du joueur 
@@ -128,30 +131,30 @@ export default class characters {
             || this.hitboxMaincharacter[1] - hitboxOthercharacter[0] <=8 && this.hitboxMaincharacter[2] >= hitboxOthercharacter[2] &&
             this.hitboxMaincharacter[2] <= hitboxOthercharacter[3] && this.hitboxMaincharacter[1] -hitboxOthercharacter[0]  >= -5 ) {
             this.hit.right = true;
-            this.becomeTag();
+            this.becomeTag(otherCaracter);
           }
           else if(this.hitboxMaincharacter[0] - hitboxOthercharacter[1] <= 5 && this.hitboxMaincharacter[3] <= hitboxOthercharacter[3] &&
             this.hitboxMaincharacter[3] >=hitboxOthercharacter[2] && hitboxOthercharacter[1] - this.hitboxMaincharacter[0] <= 30 ||
             this.hitboxMaincharacter[0] - hitboxOthercharacter[1] <= 5 && this.hitboxMaincharacter[2] >= hitboxOthercharacter[2] &&
             this.hitboxMaincharacter[2] <= hitboxOthercharacter[3] && hitboxOthercharacter[1] - this.hitboxMaincharacter[0] <= 30 ) {
             this.hit.left = true;    
-            this.becomeTag();
+            this.becomeTag(otherCaracter);
           }  
           else if(hitboxOthercharacter[2] - this.hitboxMaincharacter[3]   <= 9 && this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] &&
             this.hitboxMaincharacter[1] >= hitboxOthercharacter[0] && hitboxOthercharacter[2] >= this.hitboxMaincharacter[2]  ||
             hitboxOthercharacter[2] - this.hitboxMaincharacter[3]   <= 9 && this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] &&
             this.hitboxMaincharacter[1] >= hitboxOthercharacter[1] && hitboxOthercharacter[2] >= this.hitboxMaincharacter[2] ) {
             this.hit.bottom = true;
-            this.becomeTag();
+            this.becomeTag(otherCaracter);
           }
           else if(this.hitboxMaincharacter[2] - hitboxOthercharacter[3] <=4 && this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] &&
             this.hitboxMaincharacter[1] >= hitboxOthercharacter[0] && this.hitboxMaincharacter[3] >= hitboxOthercharacter[3]||
             this.hitboxMaincharacter[2] - hitboxOthercharacter[3] <=4 && this.hitboxMaincharacter[0] >= hitboxOthercharacter[1] &&
              this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] && this.hitboxMaincharacter[3] >= hitboxOthercharacter[3]){
             this.hit.top = true;
-            this.becomeTag();
+            this.becomeTag(otherCaracter);
           }
-          else {
+          else if(!this.immobiliser) {
             this.hit.right = false;
             this.hit.left = false;
             this.hit.top = false;
@@ -161,20 +164,29 @@ export default class characters {
 
 
       activerTagMode(){
+        console.log("in");
         this.hit.right = false;
         this.hit.left = false;
         this.hit.top = false;
         this.hit.bottom = false;
+        this.timer.start();
+        this.immobiliser = false;
+        this.isTag = true;
       }
-      becomeTag(){
-        if(1 === 1){
-          /**this.tag */
-          /**setInterval(this.activerTagMode,2000);
+      becomeTag(otherCaracter){
+        if(!this.immobiliser && otherCaracter.isTag){
+          this.immobiliser = true;
           this.hit.right = true;
           this.hit.left = true;
           this.hit.top = true;
-          this.hit.bottom = true;**/
+          this.hit.bottom = true;
+          setInterval(() => this.activerTagMode(), 2000);
         }
+        /**else if(!otherCaracter.immobiliser){
+          console.log(!otherCaracter.isTag)
+          this.timer.stop();
+          this.isTag = false;
+        }**/
       }
       hitBoxCalc(character){
          return [character.position.x,character.position.x -20 + character.sprite.tileWidth,character.position.y,character.position.y + character.sprite.tileHeight -20];

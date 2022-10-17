@@ -58,8 +58,8 @@ function setStageSize(){
 }
 
 function setGameLayer(){
-    stage.character1= new Character(PLAYER_ONE,getnNameOne());
-    stage.character2= new Character(PLAYER_TWO,getnNameTwo());
+    stage.character1= new Character(PLAYER_ONE,getnNameOne(),true);
+    stage.character2= new Character(PLAYER_TWO,getnNameTwo(),false);
     loop(scene.context2);
 }
 
