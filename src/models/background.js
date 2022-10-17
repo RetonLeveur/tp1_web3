@@ -46,7 +46,6 @@ export default class background{
         this.tiles[1].forEach(tile => {          
           if(tile == 4){
              array.push([tour % 10 * this.tileSize,tour % 10 *this.tileSize + this.tileSize, (tour- tour%10) /10 * this.tileSize,(tour- tour%10) /10 * this.tileSize + this.tileSize]);
-
           }
           tour++;
         });

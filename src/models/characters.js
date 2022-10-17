@@ -62,15 +62,14 @@ export default class characters {
       getTimer(){
         return this.timer;
       }
-   
       collisionEnterObjetsBloquant(listObj){
         
        
         listObj.forEach(element => {     
-          console.log(element[2] );
-          console.log(this.hitboxMaincharacter[3] );
+          
+
           if(this.hitboxMaincharacter[1] <= element[0] && this.hitboxMaincharacter[3] <= element[3] &&
-            this.hitboxMaincharacter[3] >=element[2] && element[0] && element[0]-this.hitboxMaincharacter[1] <= 2 || 
+            this.hitboxMaincharacter[3] >=element[2] && element[0]-this.hitboxMaincharacter[1] <= 2 || 
             this.hitboxMaincharacter[1] <= element[0] && this.hitboxMaincharacter[2] >= element[2] &&
             this.hitboxMaincharacter[2] <= element[3] && element[0]-this.hitboxMaincharacter[1] <= 2){
             this.hit.right = true;
@@ -82,13 +81,13 @@ export default class characters {
             this.hitboxMaincharacter[2] <= element[3] && element[1] - this.hitboxMaincharacter[0] <= 2 ){
             this.hit.left = true;   
           }
-          /*else if(this.hitboxMaincharacter[3] <= element[2] && this.hitboxMaincharacter[0] <= element[0] &&
-            this.hitboxMaincharacter[1] >= element[0] && element[2] - this.hitboxMaincharacter[3] <= 35 ||
-            this.hitboxMaincharacter[3] <= element[2] && this.hitboxMaincharacter[0] <= element[1] &&
-            this.hitboxMaincharacter[1] >= element[1] && element[2] - this.hitboxMaincharacter[3] <= 35 )
+          else if(this.hitboxMaincharacter[3] <= element[2] && this.hitboxMaincharacter[0] <= element[1] &&
+            this.hitboxMaincharacter[1] >= element[0] && this.hitboxMaincharacter[3] - element[2]   >= -3||
+            this.hitboxMaincharacter[2] >= element[3] && this.hitboxMaincharacter[0] >= element[1] &&
+             this.hitboxMaincharacter[0] <= element[1] && this.hitboxMaincharacter[3] - element[2]  >= -3)
           {
             this.hit.bottom = true;
-          }**/
+          }
           else if(this.hitboxMaincharacter[2] >= element[3] && this.hitboxMaincharacter[0] <= element[1] &&
             this.hitboxMaincharacter[1] >= element[0] && this.hitboxMaincharacter[2] - element[3]   <= 10||
             this.hitboxMaincharacter[2] >= element[3] && this.hitboxMaincharacter[0] >= element[1] &&
@@ -121,31 +120,34 @@ export default class characters {
       collisionEnterCharacter(otherCaracter){
         this.hitboxMaincharacter = this.hitBoxCalc(this);
         let hitboxOthercharacter = this.hitBoxCalc(otherCaracter);
-
-          if(this.hitboxMaincharacter[1] <= hitboxOthercharacter[0] && this.hitboxMaincharacter[3] <= hitboxOthercharacter[3] &&
-            this.hitboxMaincharacter[3] >=hitboxOthercharacter[2] && this.hitboxMaincharacter[1] -hitboxOthercharacter[0]  >= -5  
-            || this.hitboxMaincharacter[1] <= hitboxOthercharacter[0] && this.hitboxMaincharacter[2] >= hitboxOthercharacter[2] &&
-            this.hitboxMaincharacter[2] <= hitboxOthercharacter[3] && this.hitboxMaincharacter[1] -hitboxOthercharacter[0]  >= -5 ){
+       
+          if(this.hitboxMaincharacter[1] - hitboxOthercharacter[0] <=8 && this.hitboxMaincharacter[3] <= hitboxOthercharacter[3] &&
+            this.hitboxMaincharacter[3] >=hitboxOthercharacter[2] && this.hitboxMaincharacter[1] - hitboxOthercharacter[0]  >= -5  
+            || this.hitboxMaincharacter[1] - hitboxOthercharacter[0] <=8 && this.hitboxMaincharacter[2] >= hitboxOthercharacter[2] &&
+            this.hitboxMaincharacter[2] <= hitboxOthercharacter[3] && this.hitboxMaincharacter[1] -hitboxOthercharacter[0]  >= -5 ) {
             this.hit.right = true;
+            this.becomeTag();
           }
-          else if(this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] && this.hitboxMaincharacter[3] <= hitboxOthercharacter[3] &&
-            this.hitboxMaincharacter[3] >=hitboxOthercharacter[2] && hitboxOthercharacter[1] - this.hitboxMaincharacter[0] <= 10 ||
-            this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] && this.hitboxMaincharacter[2] >= hitboxOthercharacter[2] &&
-            this.hitboxMaincharacter[2] <= hitboxOthercharacter[3] && hitboxOthercharacter[1] - this.hitboxMaincharacter[0] <= 10 ){
-            this.hit.left = true;   
+          else if(this.hitboxMaincharacter[0] - hitboxOthercharacter[1] <= 5 && this.hitboxMaincharacter[3] <= hitboxOthercharacter[3] &&
+            this.hitboxMaincharacter[3] >=hitboxOthercharacter[2] && hitboxOthercharacter[1] - this.hitboxMaincharacter[0] <= 30 ||
+            this.hitboxMaincharacter[0] - hitboxOthercharacter[1] <= 5 && this.hitboxMaincharacter[2] >= hitboxOthercharacter[2] &&
+            this.hitboxMaincharacter[2] <= hitboxOthercharacter[3] && hitboxOthercharacter[1] - this.hitboxMaincharacter[0] <= 30 ) {
+            this.hit.left = true;    
+            this.becomeTag();
           }  
-          else if(this.hitboxMaincharacter[3] <= hitboxOthercharacter[2] && this.hitboxMaincharacter[0] <= hitboxOthercharacter[0] &&
-            this.hitboxMaincharacter[1] >= hitboxOthercharacter[0] && hitboxOthercharacter[2] - this.hitboxMaincharacter[3] <= 10 ||
-            this.hitboxMaincharacter[3] <= hitboxOthercharacter[2] && this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] &&
-            this.hitboxMaincharacter[1] >= hitboxOthercharacter[1] && hitboxOthercharacter[2] - this.hitboxMaincharacter[3] <= 10 )
-          {
+          else if(hitboxOthercharacter[2] - this.hitboxMaincharacter[3]   <= 9 && this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] &&
+            this.hitboxMaincharacter[1] >= hitboxOthercharacter[0] && hitboxOthercharacter[2] >= this.hitboxMaincharacter[2]  ||
+            hitboxOthercharacter[2] - this.hitboxMaincharacter[3]   <= 9 && this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] &&
+            this.hitboxMaincharacter[1] >= hitboxOthercharacter[1] && hitboxOthercharacter[2] >= this.hitboxMaincharacter[2] ) {
             this.hit.bottom = true;
+            this.becomeTag();
           }
-          else if(this.hitboxMaincharacter[2] >= hitboxOthercharacter[3] && this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] &&
-            this.hitboxMaincharacter[1] >= hitboxOthercharacter[0] && this.hitboxMaincharacter[2] - hitboxOthercharacter[3]   <= 5||
-            this.hitboxMaincharacter[2] >= hitboxOthercharacter[3] && this.hitboxMaincharacter[0] >= hitboxOthercharacter[1] &&
-             this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] && this.hitboxMaincharacter[2] - hitboxOthercharacter[3]  <= 5){
+          else if(this.hitboxMaincharacter[2] - hitboxOthercharacter[3] <=4 && this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] &&
+            this.hitboxMaincharacter[1] >= hitboxOthercharacter[0] && this.hitboxMaincharacter[3] >= hitboxOthercharacter[3]||
+            this.hitboxMaincharacter[2] - hitboxOthercharacter[3] <=4 && this.hitboxMaincharacter[0] >= hitboxOthercharacter[1] &&
+             this.hitboxMaincharacter[0] <= hitboxOthercharacter[1] && this.hitboxMaincharacter[3] >= hitboxOthercharacter[3]){
             this.hit.top = true;
+            this.becomeTag();
           }
           else {
             this.hit.right = false;
@@ -156,7 +158,22 @@ export default class characters {
       }
 
       
-
+      activerTagMode(){
+        this.hit.right = false;
+        this.hit.left = false;
+        this.hit.top = false;
+        this.hit.bottom = false;
+      }
+      becomeTag(){
+        if(1 === 1){
+          /**this.tag */
+          setInterval(this.activerTagMode,2000);
+          this.hit.right = true;
+          this.hit.left = true;
+          this.hit.top = true;
+          this.hit.bottom = true;
+        }
+      }
       hitBoxCalc(character){
          return [character.position.x,character.position.x -20 + character.sprite.tileWidth,character.position.y,character.position.y + character.sprite.tileHeight -20];
       }
