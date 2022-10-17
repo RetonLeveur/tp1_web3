@@ -8,8 +8,8 @@ export default class scoreBoard{
 
     afficher(){
         const board = $('<div></div>').attr('id','scoreBoard').addClass('text-center');
-        const playerOne= $('<p></p>').text(this.joueur1.name +  ":" + this.joueur1.temps);
-        const playerTwo= $('<p></p>').text(this.joueur2.name +  ":" + this.joueur2.temps);
+        const playerOne= $('<p></p>').text(this.joueur1.name +  ":" + this.joueur1.timer.duree);
+        const playerTwo= $('<p></p>').text(this.joueur2.name +  ":" + this.joueur2.timer.duree);
         board.append(playerOne).append(playerTwo);
     
         return board;

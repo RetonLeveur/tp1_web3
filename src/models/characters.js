@@ -1,3 +1,5 @@
+import  timer from './timer.js';
+
 export default class characters {
     hit ={right:false,left:false,top:false,bottom:false}
     currentFrame = 0;
@@ -11,7 +13,7 @@ export default class characters {
         this.img.src = sprite.src;
         this.position = this.sprite.initialPosition;
         this.sequence = this.sprite.idleSequence;
-        this.temps = 60;
+        this.timer = new timer(60);
         this.hitboxMaincharacter = [];
         document.addEventListener("keydown", (event) => {
           this.keysdown[event.key] = true;
@@ -19,7 +21,8 @@ export default class characters {
         document.addEventListener("keyup", (event) => {
           delete this.keysdown[event.key];
         });
-    
+        
+        this.timer.start();
         setInterval(() => this.changeFrame(), 100);
       }
      // Séquence de mouvement du joueur 
@@ -61,9 +64,6 @@ export default class characters {
         return this.sequence[frame].y * this.sprite.tileHeight;
       }
 
-      getTimer(){
-        return this.timer;
-      }
       collisionEnterObjetsBloquant(listObj){
         
        
