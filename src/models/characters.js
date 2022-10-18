@@ -15,7 +15,7 @@ export default class characters {
         this.sequence = this.sprite.idleSequence;
         this.timer = new timer(60);
         this.hitboxMaincharacter = [];
-        this.immobiliser = false;
+        this.isImmobiliser = false;
         document.addEventListener("keydown", (event) => {
           this.keysdown[event.key] = true;
         });
@@ -154,39 +154,40 @@ export default class characters {
             this.hit.top = true;
             this.becomeTag(otherCaracter);
           }
-          else if(!this.immobiliser) {
-            this.hit.right = false;
-            this.hit.left = false;
-            this.hit.top = false;
-            this.hit.bottom = false;
+          else if(!this.isImmobiliser) {
+              this.libererMouvement();
           }
       }
 
-
-      activerTagMode(){
-        console.log("in");
+      immobilier(){
+        this.hit.right = true;
+        this.hit.left = true;
+        this.hit.top = true;
+        this.hit.bottom = true;
+      }
+      
+      libererMouvement(){
         this.hit.right = false;
         this.hit.left = false;
         this.hit.top = false;
         this.hit.bottom = false;
+      }
+      activerTagMode(){
+        this.libererMouvement();
         this.timer.start();
-        this.immobiliser = false;
-        this.isTag = true;
+        this.isImmobiliser = false;   
       }
       becomeTag(otherCaracter){
-        if(!this.immobiliser && otherCaracter.isTag){
-          this.immobiliser = true;
-          this.hit.right = true;
-          this.hit.left = true;
-          this.hit.top = true;
-          this.hit.bottom = true;
-          setInterval(() => this.activerTagMode(), 2000);
+        if(this.isImmobiliser && !this.isTag){
+          this.isTag = true;
+          this.immobilier();
+          setTimeout(() => this.activerTagMode(), 2000);
         }
-        /**else if(!otherCaracter.immobiliser){
-          console.log(!otherCaracter.isTag)
+        else if(!otherCaracter.isImmobiliser && this.isTag && !this.isImmobiliser){
+          otherCaracter.isImmobiliser = true;
           this.timer.stop();
           this.isTag = false;
-        }**/
+        }
       }
       hitBoxCalc(character){
          return [character.position.x,character.position.x -20 + character.sprite.tileWidth,character.position.y,character.position.y + character.sprite.tileHeight -20];

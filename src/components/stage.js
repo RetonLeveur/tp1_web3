@@ -58,8 +58,7 @@ function setStageSize(){
 }
 
 function setGameLayer(){
-    stage.character1= new Character(PLAYER_ONE,getnNameOne(),true);
-    stage.character2= new Character(PLAYER_TWO,getnNameTwo(),false);
+    createCharacterWithTagRandom()
     loop(scene.context2);
 }
 
@@ -83,6 +82,7 @@ function loop(ctx){
     stage.character2.render(ctx);
     stage.character2.collisionEnterCharacter(stage.character1);
     stage.character2.collisionEnterBorder(scene.tileMap.getBorder());
+    stage.character2.collisionEnterObjetsBloquant(scene.tileMap.zoneBloquant);
 
     ctx.restore();
     setTimeout(() => {window.requestAnimationFrame(() => loop(ctx));},33);
@@ -92,5 +92,17 @@ function loop(ctx){
 function gererScoreBoard(){
     $(".scoreBoard").remove();
     wrapper.append(new scoreBoard(stage.character1,stage.character2).afficher().addClass('scoreBoard'))
+}
+
+function createCharacterWithTagRandom(){
+    let random =Math.random(); 
+    if(random > 0.5){
+        stage.character1= new Character(PLAYER_ONE,getnNameOne(),true);
+        stage.character2= new Character(PLAYER_TWO,getnNameTwo(),false);
+    }
+    else{
+        stage.character1= new Character(PLAYER_ONE,getnNameOne(),false);
+        stage.character2= new Character(PLAYER_TWO,getnNameTwo(),true);
+    }
 }
 
