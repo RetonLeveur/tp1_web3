@@ -9,7 +9,12 @@ canvas{
     left: 50%;
     margin-top: 10%;
 }
-
+.scoreBoard{
+    background-color: rgb(125, 189, 30);
+    width: 100%;
+    left: 30%;
+    font-size: large;
+}
 .leaderBoard{
     position: absolute;
     top: 5%;
