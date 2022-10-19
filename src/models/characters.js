@@ -1,10 +1,10 @@
 import  timer from './timer.js';
-
+import { addToLeaderBoard } from '../components/leaderBoard.js';
 export default class characters {
     hit ={right:false,left:false,top:false,bottom:false}
     currentFrame = 0;
     keysdown = {};
-    constructor(sprite,name,isTag) {
+    constructor(sprite,name,isTag,score) {
         this.sprite = sprite;
         this.img = new Image();
         this.speed = 5; 
@@ -16,6 +16,7 @@ export default class characters {
         this.timer = new timer(60);
         this.hitboxMaincharacter = [];
         this.isImmobiliser = false;
+        this.score = score
         document.addEventListener("keydown", (event) => {
           this.keysdown[event.key] = true;
         });
@@ -189,13 +190,24 @@ export default class characters {
           this.isTag = false;
         }
       }
+     /* setScore(otherCaracter){
+        if(this.timer.duree < 1){
+          otherCaracter.timer.stop();
+          otherCaracter.score = otherCaracter.timer.duree;
+          addToLeaderBoard(otherCaracter.name,otherCaracter.score)
+        }
+        else if(otherCaracter.timer.duree < 1){
+            this.timer.stop();
+             this.score= this.timer.duree;
+             addToLeaderBoard(this.name,this.score);
+        }
+      }*/
       hitBoxCalc(character){
          return [character.position.x,character.position.x -20 + character.sprite.tileWidth,character.position.y,character.position.y + character.sprite.tileHeight -20];
       }
     
       render(ctx) {
         ctx.save();
-
         ctx.drawImage(
           this.img,
           this.getSourceX(),

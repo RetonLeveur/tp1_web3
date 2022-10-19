@@ -67,6 +67,8 @@ function setGameLayer(){
 function loop(ctx){
 
     gererScoreBoard();
+    //stage.character1.setScore(stage.character2);
+   // stage.character2.setScore(stage.character1);
     ctx.save();
     ctx.clearRect(0,0,stage.width,stage.height);
 
@@ -105,4 +107,7 @@ function createCharacterWithTagRandom(){
         stage.character2= new Character(PLAYER_TWO,getnNameTwo(),true);
     }
 }
+
+
+
 
