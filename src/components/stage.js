@@ -10,6 +10,7 @@ const scene = {};
 const tileSize = 64;
 const wrapper = $('<div></div>');
 export let gameOver = false
+export let Winner = ''
 export function stage(){
     /** scoreboard ici */
 
@@ -120,13 +121,15 @@ function createCharacterWithTagRandom(){
           stage.character2.score = stage.character2.timer.duree;
           addToLeaderBoard(stage.character2.name,stage.character2.score)
           gameOver= true;
+          Winner = stage.character2.name + ' a gagné la partie'
           newGame();
         }
         else if(stage.character2.timer.duree <= 0){
             stage.character1.timer.stop();
               stage.character1.score = stage.character1.timer.duree;
               addToLeaderBoard(stage.character1.name,stage.character1.score)
-              gameOver= true;
+             
+              Winner = stage.character1.name + ' a gagné la partie'
               newGame();
         }
       
