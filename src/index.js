@@ -1,5 +1,5 @@
 import { menu } from "./components/menu.js";
-import { stage, Winner } from "./components/stage.js";
+import { stage } from "./components/stage.js";
 import { createLeaderBoard } from "./components/leaderBoard.js";
 // ajout de la div principal au body
 export let gameOn = false;
@@ -9,17 +9,15 @@ const gameBoard = $("<div></div>")
 
 function load() {
   gameBoard.append(menu());
-  gameBoard.append(createLeaderBoard());
+ 
   $("body").append(gameBoard).hide().fadeIn(1500);
 }
 
 export function newGame() {
   $("#menu").fadeIn();
   $("#stage").remove();
-  stage();
-  gameBoard.append(createLeaderBoard());
-  confirm(Winner).attr("id", "winner");
-  "#winner".remove();
+  $('#leaderBoard').show();
+
 }
 
 if (!gameOn) {
@@ -30,8 +28,16 @@ if (!gameOn) {
 $("#startGame").click(function () {
   gameOn = true;
   gameBoard.append(stage().attr("id", "stage")).hide().fadeIn();
-  //$('#leaderBoard').hide();
-  $("#leaderBoard").remove();
-  //gameBoard.append(createLeaderBoard());
+ $('#leaderBoard').remove();
   $("#menu").hide();
+});
+$('#showLeader').click(function(){
+  gameBoard.append(createLeaderBoard());
+  setTimeout(() => {
+    $('#leaderBoard').fadeOut(1500);
+  
+  }, 3000);
+  setTimeout(() => {
+    $('#leaderBoard').remove();
+   }, 4500);
 });

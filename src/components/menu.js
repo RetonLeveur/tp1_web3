@@ -6,12 +6,12 @@ function createMenu() {
   const menuCode =
     '<div class="modal-dialog" id="menu" role="document">' +
     '<div class="modal-content">' +
-    '<div class="modal-header bg-secondary">' +
-    '<h1 class="text-center bg-dark" id="playerNames">Entrer le nom des joueurs</h1>' +
+    '<div class="modal-header menu">' +
+    '<h1 class="text-center bg-dark" id="playerNames">Jeux de TAG</h1>' +
     "</div>" +
-    '<div class="modal-body">' +
+    '<div class="modal-body menu">' +
     "<form>" +
-    '<div class="form-group bg-dark">' +
+    '<div class="form-group">' +
     '<label for="recipient-name" class="col-form-label">Joueur 1:</label>' +
     '<input type="text" class="form-control" id="playerOneName" required>' +
     "</div>" +
@@ -21,11 +21,13 @@ function createMenu() {
     "</div>" +
     "</form>" +
     "</div>" +
-    '<div class=" text-center">' +
+    '<div class=" text-center menu">' +
     '<button type="submit" id="startGame" class="btn btn-lg btn-success">Jouer</button>' +
+    '<button type="submit" id="showLeader" class="btn btn-lg btn-warning">leaderBoard</button>' +
     "</div>" +
     "</div>" +
     "</div>";
+    
   return menuCode;
 }
 // retourne le nom du joueur 1

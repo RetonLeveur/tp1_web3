@@ -18,16 +18,16 @@ canvas{
 .leaderBoard{
     position: absolute;
     top: 40%;
-    left: 70%;
+    left: 40%;
     background: linear-gradient(to bottom, #66ff33 0%, #ff3300 100%);
-    border: 5px;
+    border: 3px;
     border-style: solid;
     color: black;
     width: 30%;
     border-radius: 25px;
 }
 .leaderTitle{
-    border-bottom: 5px;
+    border-bottom: 2px;
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
@@ -36,7 +36,7 @@ canvas{
     margin-top: 10px;
 }
 .leaderEntry{
-    border-bottom: 5px;
+    border-bottom: 1px;
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
@@ -45,4 +45,11 @@ canvas{
    font-family: monospace;
    text-align:center;
    padding-left: 5px;
+}
+button{
+    margin: 3px;
+    
+}
+div.menu{
+    background-color: rgb(125, 189, 30);
 }
