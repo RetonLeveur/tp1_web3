@@ -12,10 +12,10 @@ export default class scoreBoard {
       .attr("id", "scoreBoard")
       .addClass("text-center", "scorBoard");
     const playerOne = $("<p></p>").text(
-      this.joueur1.name + ": " + this.joueur1.timer.duree
+      'Player One : Arrows: '+ this.joueur1.name + ": " + this.joueur1.timer.duree
     );
     const playerTwo = $("<p></p>").text(
-      this.joueur2.name + ": " + this.joueur2.timer.duree
+     ' Player Two : W, S, A, D: '+this.joueur2.name + ": " + this.joueur2.timer.duree
     );
     board.append(playerOne).append(playerTwo);
 

@@ -12,13 +12,17 @@ let leaderBoard = [
 ];
 
 export function createLeaderBoard() {
+  let leaderList = loadBoard();
+  if(leaderList==null){
+    leaderList = leaderBoard;
+  }
   const board = $("<div></div>")
     .addClass("leaderBoard")
     .attr("id", "leaderBoard");
   board.append($("<h2>Top 10 Players</h2>").addClass("leaderTitle"));
   let position = 1;
-  leaderBoard.sort((a, b) => b.score - a.score);
-  leaderBoard.forEach((entry) => {
+  leaderList.sort((a, b) => b.score - a.score);
+  leaderList.forEach((entry) => {
     board.append(
       $("<p></p>")
         .addClass("leaderEntry")
@@ -40,5 +44,14 @@ export function addToLeaderBoard(name, score) {
   else if(leaderBoard.length <10){
     leaderBoard.push(name, score);
   }
+  
   return leaderBoard.sort((a, b) => b.score - a.score);
+}
+
+export function saveBoard(){
+  localStorage.setItem('leaderBoard',JSON.stringify(leaderBoard));
+}
+
+export function loadBoard(){
+  return JSON.parse(localStorage.getItem("leaderBoard",leaderBoard));
 }

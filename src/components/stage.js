@@ -3,6 +3,8 @@ import {PLAYER_TWO,PLAYER_ONE} from "../datas/sprite.js";
 import { getnNameOne, getnNameTwo } from "./menu.js";
 import Character from "../models/characters.js"
 import scoreBoard from "./scoreboard.js";
+import { newGame } from "../index.js";
+import { addToLeaderBoard } from "./leaderBoard.js";
 const asset = {};
 const scene = {};
 const tileSize = 64;
@@ -118,12 +120,14 @@ function createCharacterWithTagRandom(){
           stage.character2.score = stage.character2.timer.duree;
           addToLeaderBoard(stage.character2.name,stage.character2.score)
           gameOver= true;
+          newGame();
         }
         else if(stage.character2.timer.duree <= 0){
             stage.character1.timer.stop();
               stage.character1.score = stage.character1.timer.duree;
               addToLeaderBoard(stage.character1.name,stage.character1.score)
               gameOver= true;
+              newGame();
         }
       
   }
