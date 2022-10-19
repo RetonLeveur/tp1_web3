@@ -190,18 +190,7 @@ export default class characters {
           this.isTag = false;
         }
       }
-     /* setScore(otherCaracter){
-        if(this.timer.duree < 1){
-          otherCaracter.timer.stop();
-          otherCaracter.score = otherCaracter.timer.duree;
-          addToLeaderBoard(otherCaracter.name,otherCaracter.score)
-        }
-        else if(otherCaracter.timer.duree < 1){
-            this.timer.stop();
-             this.score= this.timer.duree;
-             addToLeaderBoard(this.name,this.score);
-        }
-      }*/
+    
       hitBoxCalc(character){
          return [character.position.x,character.position.x -20 + character.sprite.tileWidth,character.position.y,character.position.y + character.sprite.tileHeight -20];
       }

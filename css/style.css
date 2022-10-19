@@ -18,7 +18,7 @@ canvas{
 .leaderBoard{
     position: absolute;
     top: 40%;
-    left: 35%;
+    left: 70%;
     background: linear-gradient(to bottom, #66ff33 0%, #ff3300 100%);
     border: 5px;
     border-style: solid;

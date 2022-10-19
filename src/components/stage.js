@@ -7,6 +7,7 @@ const asset = {};
 const scene = {};
 const tileSize = 64;
 const wrapper = $('<div></div>');
+export let gameOver = false
 export function stage(){
     /** scoreboard ici */
 
@@ -67,8 +68,7 @@ function setGameLayer(){
 function loop(ctx){
 
     gererScoreBoard();
-    //stage.character1.setScore(stage.character2);
-   // stage.character2.setScore(stage.character1);
+ 
     ctx.save();
     ctx.clearRect(0,0,stage.width,stage.height);
 
@@ -86,7 +86,9 @@ function loop(ctx){
     stage.character2.collisionEnterBorder(scene.tileMap.getBorder());
     stage.character2.collisionEnterObjetsBloquant(scene.tileMap.zoneBloquant);
 
+
     ctx.restore();
+    setScore()
     setTimeout(() => {window.requestAnimationFrame(() => loop(ctx));},33);
 }
 
@@ -97,7 +99,7 @@ function gererScoreBoard(){
 }
 
 function createCharacterWithTagRandom(){
-    let random =Math.random(); 
+    let random = Math.random(); 
     if(random > 0.5){
         stage.character1= new Character(PLAYER_ONE,getnNameOne(),true);
         stage.character2= new Character(PLAYER_TWO,getnNameTwo(),false);
@@ -108,6 +110,25 @@ function createCharacterWithTagRandom(){
     }
 }
 
+
+
+ function setScore(){
+    if(stage.character1.timer.duree <= 0){
+        stage.character1.timer.stop();
+          stage.character2.score = stage.character2.timer.duree;
+          addToLeaderBoard(stage.character2.name,stage.character2.score)
+          gameOver= true;
+        }
+        else if(stage.character2.timer.duree <= 0){
+            stage.character1.timer.stop();
+              stage.character1.score = stage.character1.timer.duree;
+              addToLeaderBoard(stage.character1.name,stage.character1.score)
+              gameOver= true;
+        }
+      
+  }
+        
+    
 
 
 
