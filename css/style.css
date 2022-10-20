@@ -18,7 +18,7 @@ canvas{
 .leaderBoard{
     position: absolute;
     top: 40%;
-    left: 40%;
+    left: 35%;
     background: linear-gradient(to bottom, #66ff33 0%, #ff3300 100%);
     border: 3px;
     border-style: solid;
@@ -47,9 +47,10 @@ canvas{
    padding-left: 5px;
 }
 button{
-    margin: 3px;
+    margin-left: 5px;
     
 }
 div.menu{
     background-color: rgb(125, 189, 30);
+   
 }

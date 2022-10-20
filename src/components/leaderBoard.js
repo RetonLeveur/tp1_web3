@@ -1,6 +1,4 @@
-let leaderBoard = [
- 
-];
+let leaderBoard = [{name:'john Smith',score:60}];
 
 export function createLeaderBoard() {
  
@@ -23,14 +21,14 @@ export function createLeaderBoard() {
 }
 
 export function addToLeaderBoard(name, score) {
-  if (leaderBoard.length == 10) {
+  if (leaderBoard.length == 9) {
     if (leaderBoard.filter((a) => a.score < score)) {
       leaderBoard.pop();
-      leaderBoard.push(name);
+      leaderBoard.push(name,score);
     }
   }
-  else if(leaderBoard.length <10){
-    leaderBoard.push(name);
+  else if(leaderBoard.length <9){
+  leaderBoard.push({name,score});
   }
   
   return leaderBoard.sort((a, b) => b.score - a.score);

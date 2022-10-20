@@ -1,6 +1,6 @@
 import { menu } from "./components/menu.js";
-import { stage } from "./components/stage.js";
-import { createLeaderBoard } from "./components/leaderBoard.js";
+import { stage} from "./components/stage.js";
+import { addToLeaderBoard, createLeaderBoard } from "./components/leaderBoard.js";
 // ajout de la div principal au body
 export let gameOn = false;
 const gameBoard = $("<div></div>")
@@ -9,15 +9,12 @@ const gameBoard = $("<div></div>")
 
 function load() {
   gameBoard.append(menu());
- 
   $("body").append(gameBoard).hide().fadeIn(1500);
 }
 
 export function newGame() {
   $("#menu").fadeIn();
   $("#stage").remove();
-  $('#leaderBoard').show();
-
 }
 
 if (!gameOn) {
@@ -32,11 +29,12 @@ $("#startGame").click(function () {
   $("#menu").hide();
 });
 $('#showLeader').click(function(){
+  $("#stage").remove();
   gameBoard.append(createLeaderBoard());
   setTimeout(() => {
     $('#leaderBoard').fadeOut(1500);
   
-  }, 3000);
+  }, 2000);
   setTimeout(() => {
     $('#leaderBoard').remove();
    }, 4500);

@@ -38,5 +38,7 @@ export function getnNameOne(){
 export function getnNameTwo(){
     return $('#playerTwoName').val();
 }
+
+
  
 
