@@ -1,7 +1,11 @@
-let leaderBoard = [{name:'john Smith',score:60}];
+let leaderBoard = JSON.parse(localStorage.getItem("entries"));
+
 
 export function createLeaderBoard() {
- 
+ if (leaderBoard==null){
+  leaderBoard = [];
+ }
+
   const board = $("<div></div>")
   board.addClass("leaderBoard")
   board.attr("id", "leaderBoard");
@@ -21,14 +25,20 @@ export function createLeaderBoard() {
 }
 
 export function addToLeaderBoard(name, score) {
+  if (leaderBoard==null){
+    leaderBoard = [];
+   }
   if (leaderBoard.length == 9) {
     if (leaderBoard.filter((a) => a.score < score)) {
       leaderBoard.pop();
-      leaderBoard.push(name,score);
+      leaderBoard.push({name,score});
+      localStorage.setItem("entries",JSON.stringify(leaderBoard));
     }
   }
   else if(leaderBoard.length <9){
-  leaderBoard.push({name,score});
+    leaderBoard.push({name,score});
+    localStorage.setItem("entries",JSON.stringify(leaderBoard));
+  
   }
   
   return leaderBoard.sort((a, b) => b.score - a.score);
