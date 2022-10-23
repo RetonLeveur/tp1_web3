@@ -5,6 +5,7 @@ import Character from "../models/characters.js";
 import scoreBoard from "./scoreboard.js";
 import { newGame } from "../index.js";
 import { addToLeaderBoard } from "./leaderBoard.js";
+export let  scoreAdded = false;
 const asset = {};
 const scene = {};
 const tileSize = 64;
@@ -109,15 +110,21 @@ function createCharacterWithTagRandom() {
 }
 
 function setScore() {
-  if (stage.character1.timer.duree <= 0) {
+  if (stage.character1.timer.duree <= 0 && scoreAdded==false) {
+    scoreAdded = true;
     stage.character1.timer.stop();
     stage.character2.score = stage.character2.timer.duree;
     addToLeaderBoard(stage.character2.name, stage.character2.score);
     newGame();
-  } else if (stage.character2.timer.duree <= 0) {
+  } else if (stage.character2.timer.duree <= 0 && scoreAdded==false) {
+    scoreAdded = true;
     stage.character1.timer.stop();
     stage.character1.score = stage.character1.timer.duree;
     addToLeaderBoard(stage.character1.name, stage.character1.score);
     newGame();
   }
+
+}
+export function resetScoreAdded(){
+  return scoreAdded = false;
 }
