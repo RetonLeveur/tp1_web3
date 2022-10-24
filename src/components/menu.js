@@ -30,11 +30,15 @@ function createMenu() {
 
   return menuCode;
 }
-// retourne le nom du joueur 1
+/**
+ * @return {string} - nom du joueur 1
+ */
 export function getnNameOne() {
   return $('#playerOneName').val();
 }
-// retourne le nom du joueur 2
+/**
+ * @return {string} - nom du joueur 2
+ */
 export function getnNameTwo() {
   return $('#playerTwoName').val();
 }

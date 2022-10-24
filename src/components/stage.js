@@ -1,8 +1,8 @@
-import background from '../models/background.js';
+import Background from '../models/background.js';
 import {PLAYER_TWO, PLAYER_ONE} from '../datas/sprite.js';
 import {getnNameOne, getnNameTwo} from './menu.js';
 import Character from '../models/characters.js';
-import scoreBoard from './scoreboard.js';
+import ScoreBoard from './scoreboard.js';
 import {newGame} from '../index.js';
 import {addToLeaderBoard} from './leaderBoard.js';
 export let scoreAdded = false;
@@ -27,7 +27,7 @@ export function stage() {
   canvas2.id = 'canvas';
 
   loadImage('tileAtlas', '../assets/tiles.png');
-  scene.tileMap = new background(asset.tileAtlas, tileSize);
+  scene.tileMap = new Background(asset.tileAtlas, tileSize);
 
   scene.context = canvas[0].getContext('2d');
   scene.context2 = canvas2[0].getContext('2d');
@@ -54,32 +54,50 @@ function loadImage(key, src) {
   asset[key].src = src;
 }
 
+/**
+ * affiche le background.
+ */
 function render() {
   scene.tileMap.render(scene.context, 0);
   scene.tileMap.render(scene.context, 1);
 }
+/**
+ * donne les dimension au canvas
+ * @param {context} ctx
+ */
 function setCanvasSize(ctx) {
   ctx.canvas.height = scene.tileMap.rows * tileSize;
   ctx.canvas.width = scene.tileMap.cols * tileSize;
 }
 
+/**
+ * donne les dimension au stage
+ */
 function setStageSize() {
   stage.height = scene.tileMap.rows * tileSize;
   stage.width = scene.tileMap.cols * tileSize;
 }
 
+/**
+ * creer les personnage et demarrer la loop
+ */
 function setGameLayer() {
   createCharacterWithTagRandom();
   loop(scene.context2);
 }
 
+/**
+ * loop récurente gérant le jeu
+ * @param {context} ctx
+ */
 function loop(ctx) {
   gererScoreBoard();
   setScore();
   ctx.save();
   ctx.clearRect(0, 0, stage.width, stage.height);
 
-  /** L'ordre est important colisionEnterCharacter doit être avant les autres collisions */
+  /** L'ordre est important colisionEnterCharacter
+   * doit être avant les autres collisions */
   stage.character1.move();
   stage.character1.render(ctx);
   stage.character1.collisionEnterCharacter(stage.character2);
@@ -98,15 +116,21 @@ function loop(ctx) {
   }, 33);
 }
 
+/**
+ * gère le score board
+ */
 function gererScoreBoard() {
   $('.scoreBoard').remove();
   wrapper.append(
-      new scoreBoard(stage.character1, stage.character2)
+      new ScoreBoard(stage.character1, stage.character2)
           .afficher()
           .addClass('scoreBoard'),
   );
 }
 
+/**
+ * Crée les 2 personnage et donne la tag a un.
+ */
 function createCharacterWithTagRandom() {
   const random = Math.random();
   if (random > 0.5) {
@@ -118,6 +142,9 @@ function createCharacterWithTagRandom() {
   }
 }
 
+/**
+ * set le score ?
+ */
 function setScore() {
   if (stage.character1.timer.duree <= 0 && scoreAdded==false) {
     scoreAdded = true;
@@ -133,6 +160,7 @@ function setScore() {
     newGame();
   }
 }
+
 export function resetScoreAdded() {
   return scoreAdded = false;
 }

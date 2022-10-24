@@ -24,7 +24,7 @@ export default class characters {
     this.img.src = sprite.src;
     this.position = this.sprite.initialPosition;
     this.sequence = this.sprite.idleSequence;
-    this.timer = new Timer(1);
+    this.timer = new Timer(60);
     this.hitboxMaincharacter = [];
     this.isImmobiliser = false;
     this.score = score;
