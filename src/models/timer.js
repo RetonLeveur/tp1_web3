@@ -1,20 +1,34 @@
-export default class timer{
-    constructor(temps){
-        this.duree = temps
-    }
+/**
+ * Classe timer pour le character.
+ */
+export default class timer {
+  /**
+     * construit le timer
+     * @param {number} temps
+     */
+  constructor(temps) {
+    this.duree = temps;
+  }
 
-    start(){  
-        this.timer = setInterval(() => this.reduireTemps(),1000);
-    }
+  /**
+   * active le timer.
+   */
+  start() {
+    this.timer = setInterval(() => this.reduireTemps(), 1000);
+  }
 
-    stop(){
-        clearInterval(this.timer);
-    }
-    reduireTemps(){
-        this.duree--;
-    }
+  /**
+   * arrête le timer
+   */
+  stop() {
+    clearInterval(this.timer);
+  }
+  /**
+   * réduit le temps
+   */
+  reduireTemps() {
+    this.duree--;
+  }
 }
 
 
-
-   

@@ -1,32 +1,36 @@
-import background from "../models/background.js";
-import { PLAYER_TWO, PLAYER_ONE } from "../datas/sprite.js";
-import { getnNameOne, getnNameTwo } from "./menu.js";
-import Character from "../models/characters.js";
-import scoreBoard from "./scoreboard.js";
-import { newGame } from "../index.js";
-import { addToLeaderBoard } from "./leaderBoard.js";
-export let  scoreAdded = false;
+import background from '../models/background.js';
+import {PLAYER_TWO, PLAYER_ONE} from '../datas/sprite.js';
+import {getnNameOne, getnNameTwo} from './menu.js';
+import Character from '../models/characters.js';
+import scoreBoard from './scoreboard.js';
+import {newGame} from '../index.js';
+import {addToLeaderBoard} from './leaderBoard.js';
+export let scoreAdded = false;
 const asset = {};
 const scene = {};
 const tileSize = 64;
-const wrapper = $("<div></div>");
-export let gameOver = false;
+const wrapper = $('<div></div>');
+export const gameOver = false;
+/**
+ * Le tableau de jeu.
+ * @return {div}
+ */
 export function stage() {
   /** scoreboard ici */
 
-  /**quand je le mets en jquery le canvas prend pas la bonne dimension */
+  /** quand je le mets en jquery le canvas prend pas la bonne dimension */
 
-  const canvas = $("<canvas></canvas>");
-  canvas.id = "canvas";
+  const canvas = $('<canvas></canvas>');
+  canvas.id = 'canvas';
 
-  const canvas2 = $("<canvas></canvas>");
-  canvas2.id = "canvas";
+  const canvas2 = $('<canvas></canvas>');
+  canvas2.id = 'canvas';
 
-  loadImage("tileAtlas", "../assets/tiles.png");
+  loadImage('tileAtlas', '../assets/tiles.png');
   scene.tileMap = new background(asset.tileAtlas, tileSize);
 
-  scene.context = canvas[0].getContext("2d");
-  scene.context2 = canvas2[0].getContext("2d");
+  scene.context = canvas[0].getContext('2d');
+  scene.context2 = canvas2[0].getContext('2d');
 
   setCanvasSize(scene.context);
   setCanvasSize(scene.context2);
@@ -39,9 +43,14 @@ export function stage() {
   return wrapper;
 }
 
+/**
+ * load l'image
+ * @param {String} key
+ * @param {img_src} src
+ */
 function loadImage(key, src) {
   asset[key] = new Image();
-  asset[key].addEventListener("load", render);
+  asset[key].addEventListener('load', render);
   asset[key].src = src;
 }
 
@@ -70,7 +79,7 @@ function loop(ctx) {
   ctx.save();
   ctx.clearRect(0, 0, stage.width, stage.height);
 
-  /**L'ordre est important colisionEnterCharacter doit être avant les autres collisions */
+  /** L'ordre est important colisionEnterCharacter doit être avant les autres collisions */
   stage.character1.move();
   stage.character1.render(ctx);
   stage.character1.collisionEnterCharacter(stage.character2);
@@ -90,16 +99,16 @@ function loop(ctx) {
 }
 
 function gererScoreBoard() {
-  $(".scoreBoard").remove();
+  $('.scoreBoard').remove();
   wrapper.append(
-    new scoreBoard(stage.character1, stage.character2)
-      .afficher()
-      .addClass("scoreBoard")
+      new scoreBoard(stage.character1, stage.character2)
+          .afficher()
+          .addClass('scoreBoard'),
   );
 }
 
 function createCharacterWithTagRandom() {
-  let random = Math.random();
+  const random = Math.random();
   if (random > 0.5) {
     stage.character1 = new Character(PLAYER_ONE, getnNameOne(), true);
     stage.character2 = new Character(PLAYER_TWO, getnNameTwo(), false);
@@ -123,8 +132,7 @@ function setScore() {
     addToLeaderBoard(stage.character1.name, stage.character1.score);
     newGame();
   }
-
 }
-export function resetScoreAdded(){
+export function resetScoreAdded() {
   return scoreAdded = false;
 }
