@@ -1,4 +1,4 @@
-import {menu} from './components/menu.js';
+import {createMenu} from './components/menu.js';
 import {stage, resetScoreAdded} from './components/stage.js';
 import {createLeaderBoard} from './components/leaderBoard.js';
 // ajout de la div principal au body
@@ -7,7 +7,7 @@ const gameBoard = $('<div></div>')
     .attr('id', 'gameBoard')
     .addClass('text-center');
 
-gameBoard.append(menu());
+gameBoard.append(createMenu);
 $('body').append(gameBoard).hide().fadeIn(1500);
 
 /**

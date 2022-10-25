@@ -1,8 +1,10 @@
-export function menu() {
-  return createMenu();
-}
-// code pour le modal
-function createMenu() {
+
+/**
+ * 
+ * @returns Le menu
+ */
+
+export function createMenu() {
   const menuCode =
     '<div class="modal-dialog" id="menu" role="document">' +
     '<div class="modal-content">' +

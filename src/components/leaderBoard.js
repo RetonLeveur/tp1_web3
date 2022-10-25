@@ -29,7 +29,7 @@ export function createLeaderBoard() {
 
 /**
  * @param {string} name - le nom du joueur gagnant.
- * @param {number} score
+ * @param {number} score - le Pointage du joueur gagnant
  * @return {array}
  */
 export function addToLeaderBoard(name, score) {
