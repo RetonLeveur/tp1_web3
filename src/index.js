@@ -14,8 +14,7 @@ $('body').append(gameBoard).hide().fadeIn(1500);
  * action pour démarer un nouvelle partie
  */
 export function newGame() {
-  $('#menu').fadeIn();
-  $('#stage').remove();
+  window.location.reload();
 }
 
 
