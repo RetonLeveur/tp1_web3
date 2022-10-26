@@ -1,9 +1,8 @@
 
 /**
- * 
- * @returns Le menu
+ * Créer le Menu
+ * @return {div} Le menu
  */
-
 export function createMenu() {
   const menuCode =
     '<div class="modal-dialog" id="menu" role="document">' +
@@ -24,8 +23,10 @@ export function createMenu() {
     '</form>' +
     '</div>' +
     '<div class=" text-center menu">' +
-    '<button type="submit" id="startGame" class="btn btn-lg btn-success">Jouer</button>' +
-    '<button type="submit" id="showLeader" class="btn btn-lg btn-warning">leaderBoard</button>' +
+    '<button type="submit" id="startGame"'+
+    'class="btn btn-lg btn-success">Jouer</button>' +
+    '<button type="submit" id="showLeader"' +
+     'class="btn btn-lg btn-warning">leaderBoard</button>' +
     '</div>' +
     '</div>' +
     '</div>';
